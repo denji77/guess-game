@@ -43,6 +43,7 @@ const switchPlayer = function(){
         player2.classList.add('player--active');
         activePlayer=1;
         currentScore = 0;
+        document.querySelector('#current--0').textContent=0;
         // scores[0]=0;
     }
     else{
@@ -50,6 +51,7 @@ const switchPlayer = function(){
         player1.classList.add('player--active');
         activePlayer=0;
         currentScore = 0;
+        document.querySelector('#current--1').textContent=0;
         // scores[1]=0
     }
 }
@@ -67,7 +69,16 @@ rollb.addEventListener('click',function(){
         document.querySelector('.dice').src = `dice-${1}.png`;
     }else{
         document.querySelector('.dice').src = `dice-${rand}.png`; //Nice
-        currentScore+=rand
+        currentScore+=rand;
+        // if(activePlayer==0){
+        //     document.querySelector('#current--0').textContent=currentScore;
+        // }
+        // else{
+        //     document.querySelector('#current--1').textContent=currentScore;
+        // }
+
+        document.querySelector(`#current--${activePlayer}`).textContent=currentScore;
+        //Replaced this with the regular if-else cool..right?
     }
 });
 
@@ -79,6 +90,16 @@ holdb.addEventListener('click',function(){
     else if (activePlayer==1){
         scores[1]+=currentScore;
         document.querySelector('#score--1').textContent=scores[1];
+    }
+    if(scores[0]>=100){
+        player1.classList.add('player--winner');
+        rollb.disabled = true;
+        holdb.disabled = true; 
+    }
+    else if (scores[1]>=100){
+        player2.classList.add('player--winner');
+        rollb.disabled = true;
+        holdb.disabled = true; 
     }
     switchPlayer();
 })
