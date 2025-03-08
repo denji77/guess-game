@@ -103,3 +103,27 @@ holdb.addEventListener('click',function(){
     }
     switchPlayer();
 })
+
+const newGameBtn = document.querySelector('.btn--new');
+newGameBtn.addEventListener('click', function () {
+    //Reset all in-game scores
+    scores[0] = 0;
+    scores[1] = 0;
+    currentScore = 0;
+    activePlayer = 0;
+  
+    //Reset the UI components
+    document.querySelector('#score--0').textContent = 0;
+    document.querySelector('#score--1').textContent = 0;
+    document.querySelector('#current--0').textContent = 0;
+    document.querySelector('#current--1').textContent = 0;
+    document.querySelector('#name--0').textContent = 'Player 1';
+    document.querySelector('#name--1').textContent = 'Player 2';
+    player1.classList.remove('player--winner');
+    player2.classList.remove('player--winner');
+    player2.classList.remove('player--active');
+    player1.classList.add('player--active');
+  
+    rollb.disabled = false; //Enable back the roll button
+    holdb.disabled = false; //Enable back the hold button
+  });
