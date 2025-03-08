@@ -57,6 +57,7 @@ const switchPlayer = function(){
 
 
 const rollb = document.querySelector('.btn--roll');
+const holdb = document.querySelector('.btn--hold');
 
 rollb.addEventListener('click',function(){
     rand = Math.floor(Math.random()*6)+1;
@@ -68,4 +69,16 @@ rollb.addEventListener('click',function(){
         document.querySelector('.dice').src = `dice-${rand}.png`; //Nice
         currentScore+=rand
     }
+});
+
+holdb.addEventListener('click',function(){
+    if(activePlayer==0){
+        scores[0]+=currentScore;
+        document.querySelector('#score--0').textContent=scores[0];
+    }
+    else if (activePlayer==1){
+        scores[1]+=currentScore;
+        document.querySelector('#score--1').textContent=scores[1];
+    }
+    switchPlayer();
 })
